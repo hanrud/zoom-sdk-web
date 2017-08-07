@@ -39,17 +39,28 @@
 </header>
 
 <article>
-    <p><em>Install Node.js/NPM if you don't have it</em></p>
+    <p><strong> NOTICE: In index.js there is an undocumented function generateSignature, we only use it here for quick prototyping and highly encourage you to generate this signature server side, you don't want to expose your API Key/Secret </strong></p>
+<p><em>Install Node.js/NPM if you don't have it</em></p>
 <ol>
 <li><p>Download/Clone the sample app from <a href="https://github.com/zoom/sample-app-web">GitHub</a></p>
 </li>
-<li><p>Navigate to the directory where you downloaded the sample app. Open /js/index.js file and search for <a href="https://developer.zoom.us/me/#api">YOUR_API_KEY</a> and YOUR_API_SECRET and replace with your own REST API Key and Secret, and save the file. (Key is in two places) <strong> WARNING: In index.js there is an undocumented function generateSignature, we only use it here for quick prototyping and highly encourage you to generate this signature server side, you don't want to expose your API Key/Secret </strong></p>
+<li><p>Navigate to the directory where you downloaded the sample app.</p>
+<ul>
+<li>Open /js/index.js file and search for <a href="https://developer.zoom.us/me/#api">YOUR_API_KEY</a> and YOUR_API_SECRET and replace with your own REST API Key and Secret.</li>
+<li>Save the file.</li>
+</ul>
 </li>
 <li><p>Navigate back to the root of the project and run <code>npm intall</code></p>
+<ul>
+<li>Once that is complete, this will install a node module called <a href="https://www.npmjs.com/package/http-server">http-server</a>.</li>
+<li>In terminal run <code>http-server</code> and visit <a href="http://127.0.0.1:8080">http://127.0.0.1:8080</a> in your browser. You should now be seeing the sample app UI</li>
+</ul>
 </li>
-<li><p>Once that is complete run <code>http-server</code> and visit <a href="">http://127.0.0.1:8080</a> in your browser. You should now be seeing the sample app UI</p>
-</li>
-<li><p>Go to your Zoom meeting client and start a meeting. Return to the sample app and enter a Name and the Meeting Number of the meeting you just started. Click Join.</p>
+<li><p>Go to your Zoom meeting client and start a meeting (web client cannot start a meeting, however only join an already running meeting).</p>
+<ul>
+<li>Return to the sample app and enter a Name and the Meeting Number of the meeting you just started.</li>
+<li>Click Join.</li>
+</ul>
 </li>
 </ol>
 </article>
