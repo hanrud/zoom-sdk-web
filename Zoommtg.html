@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Zoommtg.html">Zoommtg</a><ul class='methods'><li data-type='method'><a href="Zoommtg.html#callOut">callOut</a></li><li data-type='method'><a href="Zoommtg.html#getAttendeeslist">getAttendeeslist</a></li><li data-type='method'><a href="Zoommtg.html#init">init</a></li><li data-type='method'><a href="Zoommtg.html#join">join</a></li><li data-type='method'><a href="Zoommtg.html#showCalloutFunction">showCalloutFunction</a></li><li data-type='method'><a href="Zoommtg.html#showInviteFunction">showInviteFunction</a></li><li data-type='method'><a href="Zoommtg.html#showJoinAudioFunction">showJoinAudioFunction</a></li><li data-type='method'><a href="Zoommtg.html#showMeetingHeader">showMeetingHeader</a></li><li data-type='method'><a href="Zoommtg.html#showRecordFunction">showRecordFunction</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-getting-started.html">Getting Started</a></li><li><a href="tutorial-signature.html">Generating a signature</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Zoommtg.html">Zoommtg</a><ul class='methods'><li data-type='method'><a href="Zoommtg.html#callOut">callOut</a></li><li data-type='method'><a href="Zoommtg.html#getAttendeeslist">getAttendeeslist</a></li><li data-type='method'><a href="Zoommtg.html#getZoomRoomlist">getZoomRoomlist</a></li><li data-type='method'><a href="Zoommtg.html#init">init</a></li><li data-type='method'><a href="Zoommtg.html#inviteZoomRoom">inviteZoomRoom</a></li><li data-type='method'><a href="Zoommtg.html#join">join</a></li><li data-type='method'><a href="Zoommtg.html#showCalloutFunction">showCalloutFunction</a></li><li data-type='method'><a href="Zoommtg.html#showInviteFunction">showInviteFunction</a></li><li data-type='method'><a href="Zoommtg.html#showJoinAudioFunction">showJoinAudioFunction</a></li><li data-type='method'><a href="Zoommtg.html#showMeetingHeader">showMeetingHeader</a></li><li data-type='method'><a href="Zoommtg.html#showRecordFunction">showRecordFunction</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-getting-started.html">Getting Started</a></li><li><a href="tutorial-signature.html">Generating a signature</a></li></ul>
 </nav>
 
 <div id="main">
@@ -423,6 +423,197 @@
             
 
             <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getZoomRoomlist"><span class="type-signature"></span>getZoomRoomlist<span class="signature">(params)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+<!-- 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="zoommtg.js.html">zoommtg.js</a>, <a href="zoommtg.js.html#line154">line 154</a>
+    </li></ul></dd>
+     -->
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Get list of Zoom Rooms
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Zoommtg.getZoomRoomlist({
+  success: function (res) {
+    console.log(res);
+  }
+});</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>success</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Zoommtg.html#~successCallback">Zoommtg~successCallback</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Call back function on success</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -918,6 +1109,195 @@
             
 
             <td class="description last">Call back function on error</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="inviteZoomRoom"><span class="type-signature"></span>inviteZoomRoom<span class="signature">(params)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+<!-- 
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="zoommtg.js.html">zoommtg.js</a>, <a href="zoommtg.js.html#line170">line 170</a>
+    </li></ul></dd>
+     -->
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Invite Zoom Room
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Zoommtg.inviteZoomRoom({
+  zoomRoom: 'room'
+});</code></pre>
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>zoomRoom</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Zoom Room</td>
         </tr>
 
     
