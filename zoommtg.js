@@ -1,3 +1,5 @@
+//generate with `jsdoc zoommtg.js -t ./node_modules/docdash --verbose -u tutorials/`
+
 /**
  * Zoom Meeting namespace.
  * @namespace Zoommtg
