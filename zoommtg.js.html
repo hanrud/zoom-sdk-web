@@ -22,7 +22,7 @@
 <label for="nav-trigger" class="overlay"></label>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Zoommtg.html">Zoommtg</a><ul class='methods'><li data-type='method'><a href="Zoommtg.html#callOut">callOut</a></li><li data-type='method'><a href="Zoommtg.html#getAttendeeslist">getAttendeeslist</a></li><li data-type='method'><a href="Zoommtg.html#getZoomRoomlist">getZoomRoomlist</a></li><li data-type='method'><a href="Zoommtg.html#init">init</a></li><li data-type='method'><a href="Zoommtg.html#inviteZoomRoom">inviteZoomRoom</a></li><li data-type='method'><a href="Zoommtg.html#join">join</a></li><li data-type='method'><a href="Zoommtg.html#showCalloutFunction">showCalloutFunction</a></li><li data-type='method'><a href="Zoommtg.html#showInviteFunction">showInviteFunction</a></li><li data-type='method'><a href="Zoommtg.html#showJoinAudioFunction">showJoinAudioFunction</a></li><li data-type='method'><a href="Zoommtg.html#showMeetingHeader">showMeetingHeader</a></li><li data-type='method'><a href="Zoommtg.html#showRecordFunction">showRecordFunction</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-getting-started.html">Getting Started</a></li><li><a href="tutorial-signature.html">Generating a signature</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="Zoommtg.html">Zoommtg</a><ul class='methods'><li data-type='method'><a href="Zoommtg.html#callOut">callOut</a></li><li data-type='method'><a href="Zoommtg.html#getAttendeeslist">getAttendeeslist</a></li><li data-type='method'><a href="Zoommtg.html#getZoomRoomlist">getZoomRoomlist</a></li><li data-type='method'><a href="Zoommtg.html#init">init</a></li><li data-type='method'><a href="Zoommtg.html#inviteZoomRoom">inviteZoomRoom</a></li><li data-type='method'><a href="Zoommtg.html#join">join</a></li><li data-type='method'><a href="Zoommtg.html#showCalloutFunction">showCalloutFunction</a></li><li data-type='method'><a href="Zoommtg.html#showInviteFunction">showInviteFunction</a></li><li data-type='method'><a href="Zoommtg.html#showJoinAudioFunction">showJoinAudioFunction</a></li><li data-type='method'><a href="Zoommtg.html#showMeetingHeader">showMeetingHeader</a></li><li data-type='method'><a href="Zoommtg.html#showPureSharingContent">showPureSharingContent</a></li><li data-type='method'><a href="Zoommtg.html#showRecordFunction">showRecordFunction</a></li></ul></li></ul><h3>Tutorials</h3><ul><li><a href="tutorial-error-codes.html">Error Codes</a></li><li><a href="tutorial-getting-started.html">Getting Started</a></li><li><a href="tutorial-signature.html">Generating a signature</a></li></ul>
 </nav>
 
 <div id="main">
@@ -77,6 +77,7 @@
  * @param {boolean} [params.disableCallOut=false] - Enable or disable call out function
  * @param {boolean} [params.disableRecord=false] - Enable or disable record function
  * @param {boolean} [params.disableJoinAudio=false] - Enable or disable join audio function
+ * @param {boolean} [params.audioPanelAlwaysOpen=false] - Set the default state of the audio panel on join
  * @param {Zoommtg~successCallback} params.success - Call back function on success
  * @param {Zoommtg~errorCallback} params.error - Call back function on error
  */
@@ -92,13 +93,15 @@
  * @param {string} params.passWord='' - Meeting password, if no password, set to ''
  * @param {string} params.apiKey - REST API Key
  * @param {string} params.signature - See {@tutorial signature} for a How-to
+ * @param {string} params.participantId - set meeting participant ID
  * @example 
  * Zoommtg.join({
 	meetingNumber: 123456789,
 	userName: 'Zoomie Userton',
 	password: '',
 	apiKey: 'API_KEY',
-	signature: 'SIGNATURE'
+	signature: 'SIGNATURE',
+	participantId: 'UUID'
  });
  */
 
@@ -163,6 +166,19 @@
  * @param {boolean} params.show
  * @example 
  * Zoommtg.showJoinAudioFunction({
+	show: false
+ });
+ */
+
+/**
+ * Will not cover sharing content when set show as true
+ * @function showPureSharingContent
+ * @memberof Zoommtg
+ * @instance
+ * @param {Object} params
+ * @param {boolean} params.show
+ * @example
+ * Zoommtg.showPureSharingContent({
 	show: false
  });
  */
