@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>base.js - Documentation</title>
+
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Namespaces</h3><ul><li><a href="$.i18n.html">i18n</a><ul class='methods'><li data-type='method'><a href="$.i18n.html#load">load</a></li><li data-type='method'><a href="$.i18n.html#reload">reload</a></li><li data-type='method'><a href="$.i18n.html#get">get</a></li><li data-type='method'><a href="$.i18n.html#printf">printf</a></li><li data-type='method'><a href="$.i18n.html#getAll">getAll</a></li></ul></li><li><a href="ZoomMtg.html">ZoomMtg</a><ul class='methods'><li data-type='method'><a href="ZoomMtg.html#generateSignature">generateSignature</a></li><li data-type='method'><a href="ZoomMtg.html#init">init</a></li><li data-type='method'><a href="ZoomMtg.html#join">join</a></li><li data-type='method'><a href="ZoomMtg.html#showInviteFunction">showInviteFunction</a></li><li data-type='method'><a href="ZoomMtg.html#showMeetingHeader">showMeetingHeader</a></li><li data-type='method'><a href="ZoomMtg.html#showRecordFunction">showRecordFunction</a></li><li data-type='method'><a href="ZoomMtg.html#showCalloutFunction">showCalloutFunction</a></li><li data-type='method'><a href="ZoomMtg.html#showJoinAudioFunction">showJoinAudioFunction</a></li><li data-type='method'><a href="ZoomMtg.html#showPureSharingContent">showPureSharingContent</a></li><li data-type='method'><a href="ZoomMtg.html#getAttendeeslist">getAttendeeslist</a></li><li data-type='method'><a href="ZoomMtg.html#callOut">callOut</a></li><li data-type='method'><a href="ZoomMtg.html#getZoomRoomlist">getZoomRoomlist</a></li><li data-type='method'><a href="ZoomMtg.html#inviteByPhone">inviteByPhone</a></li><li data-type='method'><a href="ZoomMtg.html#inviteZoomRoom">inviteZoomRoom</a></li><li data-type='method'><a href="ZoomMtg.html#inviteCRCDevice">inviteCRCDevice</a></li><li data-type='method'><a href="ZoomMtg.html#inviteCRCDevice">inviteCRCDevice</a></li><li data-type='method'><a href="ZoomMtg.html#inviteZoomRoom">inviteZoomRoom</a></li><li data-type='method'><a href="ZoomMtg.html#mute">mute</a></li><li data-type='method'><a href="ZoomMtg.html#muteAll">muteAll</a></li><li data-type='method'><a href="ZoomMtg.html#rename">rename</a></li><li data-type='method'><a href="ZoomMtg.html#expel">expel</a></li><li data-type='method'><a href="ZoomMtg.html#record">record</a></li><li data-type='method'><a href="ZoomMtg.html#lockMeeting">lockMeeting</a></li><li data-type='method'><a href="ZoomMtg.html#leaveMeeting">leaveMeeting</a></li><li data-type='method'><a href="ZoomMtg.html#endMeeting">endMeeting</a></li><li data-type='method'><a href="ZoomMtg.html#putOnHold">putOnHold</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#generate_signature">generate_signature</a></li><li><a href="global.html#change-meeting-language">change-meeting-language</a></li><li><a href="global.html#enable_2way_audio_video">enable_2way_audio_video</a></li><li><a href="global.html#languages">languages</a></li><li><a href="global.html#language-key-value">language-key-value</a></li><li><a href="global.html#errorCodes">errorCodes</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">base.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+
+
+/**
+* Generate signature for ZoomMtg JSSDK.
+* @param string $api_key You REST API Key
+* @param string $api_secret You REST API Secret
+* @param int $meeting_number The meeting number you are creating the signature for
+* @param int $role Role that this signature is for; 0 for participant, 1 for host
+* @return {string} Returns the signature string
+* @method generate_signature
+* @example
+//PHP example code
+function generate_signature ( $api_key, $api_sercet, $meeting_number, $role){
+
+	$time = time() * 1000; //time in milliseconds (or close enough)
+	
+	$data = base64_encode($api_key . $meeting_number . $time . $role);
+	
+	$hash = hash_hmac('sha256', $data, $api_sercet, true);
+	
+	$_sig = $api_key . "." . $meeting_number . "." . $time . "." . $role . "." . base64_encode($hash);
+	
+	//return signature, url safe base64 encoded
+	return rtrim(strtr(base64_encode($_sig), '+/', '-_'), '=');
+}
+*
+*/
+
+/**
+ * change user interface language when joined, use three api
+ * {@link $.i18n.load()}
+ * {@link $.i18n.reload()} 
+ * {@link ZoomMtg.reRender()} 
+ * @method change-meeting-language
+ * @example 
+  // change to Japanese 
+$.i18n.reload("jp-JP");
+ZoomMtg.reRender({"lang": "jp-JP"});
+
+// change to customer language, you must load you language at first
+$.i18n.reload("mylang");
+ZoomMtg.reRender({"lang": "mylang"});
+
+ */
+
+ /**
+	* enable two way audio video
+	@method enable_2way_audio_video
+	@example 
+    ZoomMtg.init({
+    leaveUrl: 'http://www.zoom.us'
+    isSupportAV: true
+    });
+  */
+
+/** Zoom office supported languages, en-US is default
+ * @typedef languages
+ * @method languages
+ * @property {string} de-DE - German
+ * @property {string} es-ES - Spanish
+ * @property {string} fr-FR - French 
+ * @property {string} jp-JP - Japanese 
+ * @property {string} pt-PT - Portuguese
+ * @property {string} ru-RU - Russian 
+ * @property {string} zh-CN - Chinese
+ * @property {string} en-US - English
+ */
+
+
+ 
+/**
+ * @typedef language-key-value
+ * @method language-key-value
+ * @property {string} [apac.same_as_system] - Same as System
+ * @property {string} [apac.wc_joining_meeting] - Joining Meeting...
+ * @property {string} [apac.wc_hostme] - (Host, Me)
+ * @property {string} [apac.wc_me] - (Me)
+ * @property {string} [apac.wc_host] - (Host)
+ * @property {string} [apac.wc_lower_hand] - Lower Hand
+ * @property {string} [apac.wc_raise_hand] - Raise Hand
+ * @property {string} [apac.wc_reclaim_host] - Reclaim Host
+ * @property {string} [apac.toolbar_unmute] - Unmute
+ * @property {string} [apac.toolbar_mute] - Mute
+ * @property {string} [apac.wc_phone_call_connected] - Phone Call - Connected
+ * @property {string} [apac.wc_phone_call] - Phone Call
+ * @property {string} [apac.wc_pc_audio_connected] - Computer Audio - Connected
+ * @property {string} [apac.wc_pc_audio] - Computer Audio
+ * @property {string} [apac.dialog.btn_callme_connected] - Call Me - Connected
+ * @property {string} [apac.dialog.btn_callme] - Call Me
+ * @property {string} [apac.wc_other_is_host] - is the host now.
+ * @property {string} [apac.meeting_is_host] - You are host now.
+ * @property {string} [apac.meeting_unlock_to_invite] - The meeting has been locked, please unlock first to invite.
+ * @property {string} [apac.wc_select] - Select...
+ * @property {string} [apac.wc_put_on_hold_msg] - Please wait, the meeting host will let you in soon.
+ * @property {string} [apac.dialog.btn_endconf_meeting] - End Meeting
+ * @property {string} [apac.dialog.btn_leaveconf_meeting] - Leave Meeting
+ * @property {string} [apac.dialog.hangup_confirm] - Are you sure you want to disconnect from audio?
+ * @property {string} [apac.dialog.remain_view] - You will be disconnected from audio and remain as a viewer.
+ * @property {string} [apac.dialog.btn_hangup] - Hang Up
+ * @property {string} [apac.dialog.calling_indication] - &lt;p>You were calling &lt;span>&lt;/span>just now. S/he would join the meeting very soon.&lt;/p>
+ * @property {string} [apac.dialog.placeholder_display_name] - Invite display name in the conference
+ * @property {string} [apac.dialog.placeholder_phone_number] - Phone Number
+ * @property {string} [apac.toolbar_invite] - Invite
+ * @property {string} [apac.dialog.invite_others] - Invite Another People
+ * @property {string} [apac.dialog.btn_cancle] - Cancel
+ * @property {string} [apac.wc_invite_by_phone] - Invite by Phone
+ * @property {string} [apac.wc_invite_by_email] - Invite by Email
+ * @property {string} [apac.wc_copy_invitation] - Copy Invitation
+ * @property {string} [apac.wc_copied] - Copied
+ * @property {string} [apac.wc_copy_url] - Copy URL
+ * @property {string} [apac.wc_defalut_email] - Default Email
+ * @property {string} [apac.wc_choose_email_service] - Choose your email service to send invitation
+ * @property {string} [apac.wc_gmail] - Gmail
+ * @property {string} [apac.wc_yahoo_email] - Yahoo Email
+ * @property {string} [apac.wc_invitation_url] - Invitation URL
+ * @property {string} [apac.wc_follow_intro_join_audio] - Follow the instructions below to join audio
+ * @property {string} [apac.wc_ring] - Ring
+ * @property {string} [apac.wc_timeout] - Time out
+ * @property {string} [apac.wc_busy] - Busy
+ * @property {string} [apac.wc_decline] - Decline
+ * @property {string} [apac.wc_failed] - Failed
+ * @property {string} [apac.wc_call] - Call
+ * @property {string} [apac.wc_h323] - H.323
+ * @property {string} [apac.wc_sip] - SIP
+ * @property {string} [apac.wc_tel_password] - Password
+ * @property {string} [apac.wc_dial] - Dial
+ * @property {string} [apac.wc_enter_meeting_id] - Enter Meeting ID
+ * @property {string} [apac.wc_enter_pairing_code] - Enter the pairing code
+ * @property {string} [apac.wc_disconnected] - Disconnected
+ * @property {string} [apac.wc_leave_pc_audio] - Leave Computer Audio
+ * @property {string} [apac.wc_join_audio_by_pc] - Join Audio by Computer
+ * @property {string} [apac.wc_learn] - Learn
+ * @property {string} [apac.wc_how_to_allow] - how to allow access to your microphone.
+ * @property {string} [apac.wc_change_browser] - Your browser does not support using the computer\\u2019s Audio device. To use Zoom, install the latest version of a standard browser, such as Chrome or Firefox.
+ * @property {string} [apac.wc_upgrade_browser] - Your browser doesn\\u2019t support using computer\\u2019s Audio device, please upgrade your browser to the lastest version.
+ * @property {string} [apac.wc_prevent_access_mic] - Your browser is preventing access to your microphone.
+ * @property {string} [apac.wc_auto_join_audio] - Automatically join audio by computer when join a conferonce
+ * @property {string} [apac.wc_already_join_by_phone] - Already joined by telephone? Press
+ * @property {string} [apac.wc_on_your_phone] - on your phone
+ * @property {string} [apac.dialog.tollfree] - Toll Free
+ * @property {string} [apac.dialog.toll] - Toll
+ * @property {string} [apac.wc_participant_id] - Participant ID
+ * @property {string} [apac.wc_join_audio_timeout] - Zoom is temporarily unable to use your computer's devices to connect to the meeting audio. Click \"Join Audio by Computer\" to try again.
+ * @property {string} [apac.wc_unable_pc_audio] - Unable to use computer audio.
+ * @property {string} [apac.wc_no] - No
+ * @property {string} [apac.wc_yes] - Yes
+ * @property {string} [apac.wc_dlg_confirm] - Confirmation
+ * @property {string} [apac.wc_make_host_text] - Do you want to change the host to
+ * @property {string} [apac.wc_video.model_start] - The host has asked you to start your video
+ * @property {string} [apac.wc_video.model_stop] - You cannot start your video because the host has stopped it
+ * @property {string} [apac.wc_video.start_my_video] - Start My Video
+ * @property {string} [apac.wc_video.later] - Later
+ * @property {string} [apac.wc_video.ok] - OK
+ * @property {string} [apac.wc_bo_disallow_mic] - Browser disallow mic
+ * @property {string} [apac.toolbar_leave] - Leave
+ * @property {string} [apac.wc_leave_meeting] - Leave Meeting
+ * @property {string} [apac.wc_audio] - Audio
+ * @property {string} [apac.wc_audio_setting] - Aduio Setting
+ * @property {string} [apac.toolbar_join_audio] - Join Audio
+ * @property {string} [apac.toolbar_lock] - Lock
+ * @property {string} [apac.toolbar_unlock] - Unlock
+ * @property {string} [apac.wc_manage_participants] - Manage Participants
+ * @property {string} [apac.wc_participants] - Participants
+ * @property {string} [apac.toolbar_record] - Record
+ * @property {string} [apac.wc_cloud_recording] - Cloud Recording
+ * @property {string} [apac.toolbar_muteall] - Mute All
+ * @property {string} [apac.toolbar_unmuteall] - Unmute All
+ * @property {string} [apac.wc_video.video] - apac.wc_video.video
+ * @property {string} [apac.wc_video.start_video] - Start Video
+ * @property {string} [apac.wc_video.stop_video] - Stop Video
+ * @property {string} [apac.wc_quality] - Quality
+ * @property {string} [apac.wc_start_video] - Start Video
+ * @property {string} [apac.wc_stop_video] - Stop Video
+ * @property {string} [apac.dialog.presscode] - Conference ID
+ * @property {string} [apac.exit_full_screen] - apac.exit_full_screen
+ * @property {string} [apac.full_screen] - apac.full_screen
+ * @property {string} [apac.meeting_calling] - Calling
+ * @property {string} [apac.wc_stop_recording] - apac.wc_stop_recording
+ * @property {string} [apac.wc_recording] - apac.wc_recording
+ * @property {string} [apac.wc_talk] - apac.wc_talk
+ * @property {string} [apac.wc_select_camera] - Select a Camera
+ * @property {string} [apac.wc_video_setting] - Video Setting...
+ * @property {string} [apac.wc_is_sharing_desktop] - apac.wc_is_sharing_desktop
+ * @property {string} [apac.wc_unlock_meeting] - Unlock Meeting
+ * @property {string} [apac.wc_lock_meeting] - Lock Meeting
+ * @property {string} [apac.wc_more] - More
+ * @property {string} [apac.wc_3rd_cc_url_copied] - The URL has been copied to your clipboard
+ * @property {string} [apac.wc_3rd_cc_service] - Use a 3rd party CC service
+ * @property {string} [apac.wc_put_in_waiting] - Put in Waiting Room
+ * @property {string} [apac.dialog.rename] - Rename
+ * @property {string} [apac.wc_make_host] - Make Host
+ * @property {string} [apac.wc_remove] - Remove
+ * @property {string} [apac.wc_no_support_video] - apac.wc_no_support_video
+ * @property {string} [apac.wc_admit] - Admit
+ * @property {string} [apac.wc_video.ask_start_video] - Ask For Start Video
+ * @property {string} [apac.wc_participants_title1] - participant in the meeting
+ * @property {string} [apac.wc_participants_title2] - participants in the meeting
+ * @property {string} [apac.wc_select_microphone] - Select a Microphone
+ * @property {string} [apac.wc_select_speaker] - Select a Speaker
+ * @property {string} [apac.wc_leave_computer_audio] - Leave Computer Audio
+ * @property {string} [apac.wc_audio_options] - Audio Options
+ * @property {string} [apac.dialog.newname] - Name
+ * @property {string} [apac.dialog.btn_save] - Save
+ * @property {string} [apac.wc_pure_audio_meeting] - Pure audio meeting
+ * @property {string} [apac.wc_video.meeting_alert] - Meeting alert
+ * @property {string} [apac.dialog.lock_meeting] - Lock Meeting
+ * @property {string} [apac.dialog.lock_meeting_confirm] - Are you sure you want to lock this meeting now?
+ * @property {string} [apac.dialog.meeting_lock_prevent_join] - Locking will prevent any other people from joining the meeting.
+ * @property {string} [apac.dialog.warning] - Do not warn me again.
+ * @property {string} [apac.dialog.conference_ended] - The conference has been ended
+ * @property {string} [apac.dialog.host_end_conference] - This conference has been ended by host.
+ * @property {string} [apac.dialog.ok] - OK
+ * @property {string} [apac.dialog.or] - or
+ * @property {string} [apac.dialog.end_meeting] - End this meeting
+ * @property {string} [apac.dialog.meeting_over] - Everyone on the call will be disconnected and meeting will be over.
+ * @property {string} [apac.dialog.host_end_meeting] - This meeting has been ended by host.
+ * @property {string} [apac.dialog.meeting_ended] - The meeting has been ended
+ * @property {string} [apac.dialog.something_wrong] - Something went wrong
+ * @property {string} [apac.dialog.server_error] - The server encountered an internal error and was unable to process your request.
+ * @property {string} [apac.dialog.error_code] - Error Code:
+ * @property {string} [apac.dialog.btn_retry] - Retry
+ * @property {string} [apac.dialog.btn_exit] - Exit
+ * @property {string} [apac.dialog.leave_meeting] - Leave this meeting
+ * @property {string} [apac.dialog.leave_meeting_confirm] - Are you sure you want to leave this meeting now?
+ * @property {string} [apac.dialog.end_meeting_confirm] - Are you sure you want to end this meeting now?
+ * @property {string} [apac.dialog.dial_in] - Dial in based on your location
+ * @property {string} [apac.dialog.remeber_number] - Remember the number on this computer
+ * @property {string} [apac.wc_audio.using_audio_tip] - Your audio is connected using Computer Audio
+ * @property {string} [apac.wc_phone_connected] - Phone Connected
+ * @property {string} [apac.meeting_accept] - Call accepted
+ * @property {string} [apac.meeting_ringing] - Ringing...
+ * @property {string} [apac.meeting_busy] - Busy
+ * @property {string} [apac.meeting_fail] - Fail to call
+ * @property {string} [apac.meeting_disconnect] - Disconnecting Call
+ * @property {string} [apac.meeting_fail_disconnect] - Fail to disconnect call
+ * @property {string} [apac.dialog.expel_confirm] - Are you sure you want to expel {0} from the meeting?
+ * @property {string} [apac.dialog.you_are_removed] - You have been removed
+ * @property {string} [apac.dialog.removed_by_host] - You have been removed from this conference by the host.
+ * @property {string} [apac.dialog.meeting_locked] - The meeting has been locked
+ * @property {string} [apac.dialog.meeting_cannot_join_locked] - You cannot join this meeting now because the host locked it.
+ * @property {string} [apac.wc_waiting_room_title1] - person is waiting
+ * @property {string} [apac.wc_waiting_room_title2] - people is waiting
+ * @property {string} [apac.wc_unlock_meeting_content] - New attendees can join this meeting once unlocked.
+ * @property {string} [apac.sharing_full_screen] - Full Screen
+ * @property {string} [apac.sharing_exit_full_screen] - Exit Full Screen
+ * @property {string} [apac.sharing_full] - full
+ * @property {string} [apac.sharing_no_full] - no-full
+ * @property {string} [apac.sharing_original_size] - Original Size
+ * @property {string} [apac.sharing_fit_to_window] - Fit to Window
+ * @property {string} [apac.sharing_viewing] - You are viewing {0} 's screen
+
+ */</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.5.5</a> on Mon Aug 20 2018 13:30:18 GMT+0800 (China Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/linenumber.js"></script>
+</body>
+</html>

@@ -89,11 +89,11 @@ h4.name {
 }
 
 h4.name a {
-  color: #2d8cff;
+  color: #fc83ff;
 }
 
 h4.name a:hover {
-  border-bottom-color: #2d8cff;
+  border-bottom-color: #fc83ff;
 }
 
 h5, .container-overview .subsection-title {
@@ -279,7 +279,7 @@ footer {
 }
 
 .signature {
-    color: #2d8cff;
+    color: #fc83ff;
 }
 
 .details {
