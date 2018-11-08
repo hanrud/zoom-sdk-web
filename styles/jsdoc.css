@@ -643,3 +643,9 @@ span.param-type, .params td .param-type, .param-type dd {
   margin-left: -14px;
   margin-right: 5px;
 }
+
+
+img {
+  min-width: 20%;
+  max-width: 100%;
+}
